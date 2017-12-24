@@ -16,9 +16,6 @@
 </style>
 <script>
 import header from '@/components/block/Header'
-import edit from '@/components/block/EditPassword'
-import menu from '@/components/block/Menu'
-import bus from '../../state'
 export default {
   data(){
     return {
@@ -26,15 +23,10 @@ export default {
     }
   },
   created(){
-      var _self = this;
-      bus.$on('asideToggle', function (asideFolded) {
-          _self.asideFolded = asideFolded;
-      })
+      
   },
   components: {
     'v-header': header,
-    'v-menu': menu,
-    'v-edit': edit
   }
 }
 </script>

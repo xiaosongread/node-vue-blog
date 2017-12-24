@@ -53,6 +53,9 @@
       border-top: 1px dashed #ddd !important;
     }
   }
+  img{
+    max-width:95%;
+  }
   
 </style>
 <style lang="scss" scoped>
@@ -110,6 +113,7 @@
       }
     }
   }
+  
 }
 
 </style>

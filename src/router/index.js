@@ -1,8 +1,6 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import Form from '@/components/Form'
 import Com from '@/components/block/Com'
-import Login from '@/components/login'
 import Index from '@/components/index'
 
 
@@ -43,13 +41,13 @@ export default new Router({
       path: '/article',
       redirect: '/article/info',
       meta: {
-        title: '公司管理'
+        title: '文章详情'
       },
       component: Com,
       children: [{
         path: 'info',
         meta: {
-          title: '管理部门'
+          title: '文章详情'
         },
         component: () =>
           import ('@/components/info')

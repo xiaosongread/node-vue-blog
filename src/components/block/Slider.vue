@@ -6,16 +6,16 @@
       <p>QQ群：432320002</p>
       <ul>
         <li>
-          <img src="../../assets/github.png" alt="">
+          <img src="../../assets/QQ.png" alt="">
+        </li>
+        <li>
+          <img src="../../assets/wechat.png" alt="">
         </li>
         <li>
           <img src="../../assets/github.png" alt="">
         </li>
         <li>
-          <img src="../../assets/github.png" alt="">
-        </li>
-        <li>
-          <img src="../../assets/github.png" alt="">
+          <img src="../../assets/wechatpbulic.png" alt="">
         </li>
       </ul>
     </div>
@@ -23,7 +23,7 @@
       <h3>热点文章</h3>
       <ul>
         <template v-for="hotItem in hotArtDate">
-          <li><a :href="hotItem.href">{{hotItem.title}}</a></li>
+          <li><a :href="'/article/info?id='+hotItem._id">{{hotItem.title}}</a></li>
         </template>
       </ul>
     </div>
@@ -76,6 +76,9 @@
         overflow: hidden;
         text-overflow: ellipsis;
         white-space: nowrap;
+      }
+      li:hover{
+        color:red;
       }
     }
   }
