@@ -5,7 +5,7 @@
         <a :href="'/article/info' + '?id=' + item._id">
           <h4>{{item.title}}</h4>
           <div class="articleIntroduce">
-            <div class="date">2017-12-23</div>
+            <div class="date">{{(item.startTime).replace(/T/,' ').replace('.000Z','')}}</div>
             <div class="views">{{item.views}}</div>
           </div>
           <p class="lookIntroduce">{{item.description}}</p>
@@ -14,9 +14,8 @@
     </ul>
     <div class="block">
       <el-pagination
-        @size-change="handleSizeChange"
         @current-change="handleCurrentChange"
-        :current-page="1"
+        :current-page="page"
         :page-size="10"
         layout="total, prev, pager, next"
         :total="total">
@@ -33,6 +32,7 @@
         display: inline-block;
       }
     }
+    
   }
 </style>
 <style lang="scss" scoped>
@@ -83,6 +83,7 @@
     border-radius: 3px;
     display: inline-block;
   }
+  
 }
 </style>
 <script>
@@ -92,7 +93,7 @@
       return {
         url:'',
         listData:[],
-        page: 0,
+        page: 1,
         total:0
       };
     },
@@ -106,14 +107,26 @@
       this.getData()
     },
     watch:{
-
+      page(){
+        if(this.$route.path == '/' || this.$route.path == '/index'){ // 
+          alert("首页")
+          this.url = 'contentList'
+        } else { // 不是首页
+          alert("不是首页")
+          this.url = 'categoryList/articlesList'
+        }
+        this.getData()
+      }
     },
     methods: {
       getData(){
         var _this = this;
-        this.$http.get(this.url,{
-          size:10,
-          page:1,
+        this.$http.get(_this.url,{
+          params:{
+            size:10,
+            page:_this.page,
+          }
+          
         })
           .then(function (res) {
             console.log("列表数据",res)
@@ -124,11 +137,9 @@
             console.log(error);
           });
       },
-      handleSizeChange(val) {
-        console.log(`每页 ${val} 条`);
-      },
       handleCurrentChange(val) {
         console.log(`当前页: ${val}`);
+        this.page = val;
       }
     }
   }
