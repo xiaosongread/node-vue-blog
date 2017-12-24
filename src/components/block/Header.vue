@@ -7,25 +7,51 @@
           <li>参考书</li>
           <li>视频</li>
           <li>在线手册</li>
+          <li @click="loginFn">登陆</li>
         </ul>
       </div>
     </div>
     <div class="header-2">
       <div class="header-box">
         <div class="header-nav">
-          <div class="logo">
-            <img src="../../assets/logo-default-white.png" alt="">
-          </div>
+          <a href="/">
+            <div class="logo">
+              <img src="../../assets/logo-default-white.png" alt="">
+            </div>
+          </a>
           <ul class="nav-bar">
             <a :href="'/' + navItem.name + '?id=' + navItem._id" v-for="navItem in navData"><li>{{navItem.name}}</li></a>
           </ul>
         </div>
       </div>
     </div>
+
+    <el-dialog title="登陆" :visible.sync="dialogFormVisible">
+      <el-form :model="form">
+        <el-form-item label="用户名：" :label-width="formLabelWidth">
+          <el-input v-model="form.name" auto-complete="off"></el-input>
+        </el-form-item>
+        <el-form-item label="密码：" :label-width="formLabelWidth">
+          <el-input v-model="form.password" auto-complete="off"></el-input>
+        </el-form-item>
+
+      </el-form>
+      <div slot="footer" class="dialog-footer">
+        <el-button @click="dialogFormVisible = false">取 消</el-button>
+        <el-button type="primary" @click="submitUserFn">确 定</el-button>
+      </div>
+    </el-dialog>
+
   </div>
 </template>
 
 <style lang="scss" scoped>
+  .header-box {
+    width: 1100px;
+    height: 30px;
+    margin: 0 auto;
+    position: relative;
+  }
 .header-1{
   background:#000000;
   border-bottom: 1px solid #212121;
@@ -98,7 +124,13 @@
   export default {
     data() {
       return {
-        navData:[]
+        navData:[],
+        dialogFormVisible: false,
+        form: {
+          name: '',
+          password:''
+        },
+        formLabelWidth: '120px'
       };
     },
     watch:{
@@ -117,6 +149,22 @@
           .then(function (res) {
             console.log("顶部数据",res)
             _this.navData = res.data.data;
+          })
+          .catch(function (error) {
+            console.log(error);
+          });
+      },
+      loginFn(){
+        this.dialogFormVisible = true
+      },
+      submitUserFn(){
+        var that = this;
+        this.$http.post('user/login',{
+          username:that.form.name,
+          password:that.form.password
+        })
+          .then(function (data) {
+            console.log("登陆成功返回的消息：",data)
           })
           .catch(function (error) {
             console.log(error);

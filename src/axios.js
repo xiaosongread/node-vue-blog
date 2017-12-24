@@ -28,12 +28,12 @@ instance.interceptors.request.use(function (config) {
 // 添加响应拦截器
 instance.interceptors.response.use(function (res) {
     // 对响应数据做点什么
-    if(res.data.code!=1000){
-        Message({
-          message: res.data.description,
-          type: 'warning'
-        });
-    }
+    // if(res.data.code!=1000){
+    //     Message({
+    //       message: res.data.description,
+    //       type: 'warning'
+    //     });
+    // }
     loading.close();
     return res;
 }, function (error) {

@@ -5,8 +5,8 @@
         <a :href="'/article/info' + '?id=' + item._id">
           <h4>{{item.title}}</h4>
           <div class="articleIntroduce">
-            <div class="date">{{(item.startTime).replace(/T/,' ').replace('.000Z','')}}</div>
-            <div class="views">{{item.views}}</div>
+            <div class="date"><span><i class="iconfont">&#xe60a;</i></span>{{(item.startTime).substring(0,10)}}</div>
+            <div class="views"><span><i class="iconfont">&#xe6c0;</i></span>{{item.views}}</div>
           </div>
           <p class="lookIntroduce">{{item.description}}</p>
         </a>
@@ -32,7 +32,14 @@
         display: inline-block;
       }
     }
-    
+    .number{
+      border:1px solid #999999 !important;
+      border-radius: 3px;
+      margin:2px;
+    }
+    .number.active{
+      border: 1px solid #409EFF !important;
+    }
   }
 </style>
 <style lang="scss" scoped>
@@ -56,10 +63,14 @@
       .articleIntroduce{
         display: flex;
         font-size:12px;
-        color: #d4d4d4;
+        color: #c2c2c2;
         padding: 0 15px;
-        .date{
-
+        .views{
+          margin-left:15px;
+        }
+        .iconfont{
+          font-size: 12px;
+          margin-right: 5px;
         }
       }
       .lookIntroduce{
@@ -75,7 +86,7 @@
     }
   }
   .block{
-    margin-top:30px;
+    margin: 30px 0;
 
   }
   .number{
@@ -83,7 +94,7 @@
     border-radius: 3px;
     display: inline-block;
   }
-  
+
 }
 </style>
 <script>
@@ -108,7 +119,7 @@
     },
     watch:{
       page(){
-        if(this.$route.path == '/' || this.$route.path == '/index'){ // 
+        if(this.$route.path == '/' || this.$route.path == '/index'){ //
           alert("首页")
           this.url = 'contentList'
         } else { // 不是首页
@@ -126,7 +137,7 @@
             size:10,
             page:_this.page,
           }
-          
+
         })
           .then(function (res) {
             console.log("列表数据",res)

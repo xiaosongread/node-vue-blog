@@ -4,8 +4,12 @@
     <h3>{{infoData.title}}</h3>
   </div>
   <div class="articleintro">
-    <div class="createdDate">{{(infoData.startTime).replace(/T/,' ').replace('.000Z','')}}</div>
-    <div class="views">{{infoData.views}}</div>
+    <div class="createdDate"><span><i class="iconfont">&#xe60a;</i></span>{{(infoData.startTime).substring(0,10)}}</div>
+    <div class="views"><span><i class="iconfont">&#xe6c0;</i></span>{{infoData.views}}</div>
+  </div>
+  <div class="articleforeword">
+    <h5>前言</h5>
+    <p>{{infoData.description}}</p>
   </div>
   <div class="cons" v-html="infoData.content"></div>
 </div>
@@ -40,7 +44,7 @@
   tr td {
     border-right: 1px solid #ddd;
     text-align: center;
-  } 
+  }
   p{
     padding: 5px;
     img{
@@ -56,7 +60,7 @@
   img{
     max-width:95%;
   }
-  
+
 </style>
 <style lang="scss" scoped>
 .articleInfo{
@@ -67,17 +71,33 @@
   background: #ffffff;
   padding:15px;
   box-shadow: 0 2px 6px rgba(100, 100, 100, 0.3);
+  .iconfont{
+    font-size: 12px;
+    margin-right: 5px;
+  }
+  .views{
+    margin-left:10px;
+  }
   .articleTit{
     h3{
-      font-size:28px;
+      font-size:24px;
       margin:0;
     }
   }
   .articleintro{
     display:flex;
-    font-size:14px;
+    font-size:12px;
     padding:15px 0;
-    color: #d4d4d4;
+    color: #c2c2c2;
+    border-bottom: 1px dashed #c2c2c2;
+  }
+  .articleforeword{
+    padding:20px 0;
+    border-bottom: 1px dashed #c2c2c2;
+    h5{
+      font-weight: 500;
+      font-size: 18px;
+    }
   }
   .cons{
     ul{
@@ -96,9 +116,7 @@
           font-size:12px;
           color: #d4d4d4;
           padding: 0 15px;
-          .date{
 
-          }
         }
         .lookIntroduce{
           padding: 10px 15px;
@@ -113,7 +131,7 @@
       }
     }
   }
-  
+
 }
 
 </style>

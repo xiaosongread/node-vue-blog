@@ -8,7 +8,7 @@
         </keep-alive>
       </div>
     </div>
-    <v-edit></v-edit>
+    <v-bottom></v-bottom>
   </div>
 </template>
 <style scoped>
@@ -16,6 +16,7 @@
 </style>
 <script>
 import header from '@/components/block/Header'
+import bottom from '@/components/block/Bottom'
 export default {
   data(){
     return {
@@ -23,10 +24,11 @@ export default {
     }
   },
   created(){
-      
+
   },
   components: {
     'v-header': header,
+    'v-bottom': bottom
   }
 }
 </script>
