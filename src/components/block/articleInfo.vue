@@ -4,7 +4,7 @@
     <h3>{{infoData.title}}</h3>
   </div>
   <div class="articleintro">
-    <div class="createdDate"><span><i class="iconfont">&#xe60a;</i></span>{{(infoData.startTime).substring(0,10)}}</div>
+    <div class="createdDate"><span><i class="iconfont">&#xe60a;</i></span>{{infoData.startTime}}</div>
     <div class="views"><span><i class="iconfont">&#xe6c0;</i></span>{{infoData.views}}</div>
   </div>
   <div class="articleforeword">

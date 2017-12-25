@@ -29,10 +29,10 @@
     <el-dialog title="登陆" :visible.sync="dialogFormVisible">
       <el-form :model="form">
         <el-form-item label="用户名：" :label-width="formLabelWidth">
-          <el-input v-model="form.name" auto-complete="off"></el-input>
+          <el-input v-model="form.username"></el-input>
         </el-form-item>
         <el-form-item label="密码：" :label-width="formLabelWidth">
-          <el-input v-model="form.password" auto-complete="off"></el-input>
+          <el-input v-model="form.password" type="password"></el-input>
         </el-form-item>
 
       </el-form>
@@ -127,7 +127,7 @@
         navData:[],
         dialogFormVisible: false,
         form: {
-          name: '',
+          username: '',
           password:''
         },
         formLabelWidth: '120px'
@@ -159,10 +159,7 @@
       },
       submitUserFn(){
         var that = this;
-        this.$http.post('user/login',{
-          username:that.form.name,
-          password:that.form.password
-        })
+        this.$http.post('user/login',that.querystring.stringify(that.form)) //
           .then(function (data) {
             console.log("登陆成功返回的消息：",data)
           })

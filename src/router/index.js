@@ -35,6 +35,19 @@ export default new Router({
         }
       ]
     },
+    {
+      path: '/index',
+      meta: {
+        title: '欢迎页面'
+      },
+      component:Com,
+      children:[
+        {
+          path: 'index',
+          component: Index
+        }
+      ]
+    },
 
 
     {

@@ -1,6 +1,8 @@
 import Vue from 'vue'
 import axios from 'axios'
 import {Loading, Message} from 'element-ui';
+var querystring = require('querystring');
+Vue.prototype.querystring = querystring;
 
 var instance = axios.create({
     baseURL: 'https://www.songyanbin.com/api/',
@@ -9,7 +11,12 @@ var instance = axios.create({
 var loading;
 // 添加请求拦截器
 instance.interceptors.request.use(function (config) {
-    // 在发送请求之前做些什么
+    console.log(config)
+    // 发送请求之前
+    //设置默认请求头
+    axios.defaults.headers = {
+      "Content-Type": "application/x-www-form-urlencoded"
+    }
     loading = Loading.service({
         background: 'rgba(255,255,255,.2)',
         text: '加载中...'
