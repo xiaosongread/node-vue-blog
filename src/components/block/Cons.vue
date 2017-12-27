@@ -74,6 +74,8 @@
         }
       }
       .lookIntroduce{
+        max-height:62px;
+        line-height:23px;
         padding: 10px 15px;
         display: -webkit-box;
         -webkit-box-orient: vertical;
@@ -120,10 +122,8 @@
     watch:{
       page(){
         if(this.$route.path == '/' || this.$route.path == '/index'){ //
-          alert("首页")
           this.url = 'contentList'
         } else { // 不是首页
-          alert("不是首页")
           this.url = 'categoryList/articlesList'
         }
         this.getData()

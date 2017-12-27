@@ -7,7 +7,9 @@
           <li>参考书</li>
           <li>视频</li>
           <li>在线手册</li>
-          <li @click="loginFn">登陆</li>
+          <li @click="loginFn" v-if="!isLogin">登陆</li>
+          <li @click="adminFn" v-if="isLogin">songyanbin</li>
+          <li @click="outFn" v-if="isLogin">退出</li>
         </ul>
       </div>
     </div>
@@ -130,6 +132,7 @@
           username: '',
           password:''
         },
+        isLogin: false,
         formLabelWidth: '120px'
       };
     },
@@ -140,7 +143,14 @@
     },
     created(){
       console.log(this.$route.path)
-      this.getData()
+      this.getData();
+      this.$http.get('isLogin')
+        .then(function (res) {
+
+        })
+        .catch(function (error) {
+          console.log(error);
+        });
     },
     methods: {
       getData(){
@@ -157,11 +167,21 @@
       loginFn(){
         this.dialogFormVisible = true
       },
+      // 跳转后台
+      adminFn(){
+        this.$route.push({path: '/admin'})
+      },
+      // 推出登陆
+      outFn(){
+
+      },
       submitUserFn(){
         var that = this;
         this.$http.post('user/login',that.querystring.stringify(that.form)) //
           .then(function (data) {
             console.log("登陆成功返回的消息：",data)
+            that.isLogin = true;
+            that.dialogFormVisible = false
           })
           .catch(function (error) {
             console.log(error);
