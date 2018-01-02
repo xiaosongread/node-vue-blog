@@ -22,7 +22,7 @@
             </div>
           </a>
           <ul class="nav-bar">
-            <a :href="'/' + navItem.name + '?id=' + navItem._id" v-for="navItem in navData"><li>{{navItem.name}}</li></a>
+            <a :href="'/' + navItem.tag + '?id=' + navItem._id" v-for="navItem in navData"><li>{{navItem.name}}</li></a>
           </ul>
         </div>
       </div>

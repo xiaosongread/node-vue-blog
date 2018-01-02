@@ -14,9 +14,9 @@ instance.interceptors.request.use(function (config) {
     console.log(config)
     // 发送请求之前
     //设置默认请求头
-    // axios.defaults.headers = {
-    //   "Content-Type": "application/x-www-form-urlencoded"
-    // }
+    axios.defaults.headers = {
+      "Content-Type": "application/x-www-form-urlencoded"
+    }
     loading = Loading.service({
         background: 'rgba(255,255,255,.2)',
         text: '加载中...'

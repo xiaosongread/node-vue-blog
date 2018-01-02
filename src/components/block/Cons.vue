@@ -6,6 +6,7 @@
           <h4>{{item.title}}</h4>
           <div class="articleIntroduce">
             <div class="date"><span><i class="iconfont">&#xe60a;</i></span>{{(item.startTime).substring(0,10)}}</div>
+            <div class="views"><span><i class="iconfont">&#xe614;</i></span>{{item.category.tag}}</div>
             <div class="views"><span><i class="iconfont">&#xe6c0;</i></span>{{item.views}}</div>
           </div>
           <p class="lookIntroduce">{{item.description}}</p>
@@ -114,8 +115,9 @@
       console.log("当前列表的栏目：",this.$route.query)
       if(this.$route.path == '/' || this.$route.path == '/index'){ // 首页
         this.url = 'contentList'
-      } else { // 不是首页
-        this.url = 'categoryList/articlesList'
+      } else { // 分类页
+        console.log('123',this.$route)
+        this.url = 'categoryListContent'
       }
       this.getData()
     },
@@ -124,7 +126,8 @@
         if(this.$route.path == '/' || this.$route.path == '/index'){ //
           this.url = 'contentList'
         } else { // 不是首页
-          this.url = 'categoryList/articlesList'
+          console.log('qweqweqwe:',_this.$route)
+          this.url = 'categoryListContent'
         }
         this.getData()
       }
@@ -136,6 +139,7 @@
           params:{
             size:10,
             page:_this.page,
+            id:_this.$route.query.id || ''
           }
 
         })

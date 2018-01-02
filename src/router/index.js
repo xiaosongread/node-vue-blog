@@ -32,6 +32,14 @@ export default new Router({
         {
           path: 'js',
           component: Index
+        },
+        {
+          path: 'gongcheng',
+          component: Index
+        },
+        {
+          path: 'kuangjia',
+          component: Index
         }
       ]
     },
